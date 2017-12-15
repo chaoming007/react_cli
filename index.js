@@ -65,6 +65,7 @@ program
 });
 program.parse(process.argv);                              
 function f(){
+    console.log(" ");
     console.log("项目创建完成...");
     console.log(" ");
     console.log("请执行",chalk.red("cd "+filename+" && npm install"),"进行开发吧...");
