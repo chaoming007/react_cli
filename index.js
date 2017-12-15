@@ -37,11 +37,12 @@ let nowTemp=path.join(process.cwd(),"/template1")
 // .then(() => console.log('success!'))
 // .catch(err => console.error(err))
 
-
+const spinner;
 inquirer.prompt(questions).then(answers => {
+  spinner= ora('downloading template');
+  spinner.start();
   setFileFun(answers)
 })
-
 function setFileFun(obj){   
     let datObj="";
     fs.readJson(tempJson)
@@ -52,7 +53,8 @@ function setFileFun(obj){
     .then(()=>{
       return fs.writeJson(path.join(nowTemp,"package.json"),datObj);  
     }).then(()=>{
-
+       spinner.stop()
+       f()
     })
 }
 function setPageJsonFun(packageObj,obj){          //设置package
@@ -112,10 +114,10 @@ function setPageJsonFun(packageObj,obj){          //设置package
 
 //copy(y,d,f);
 
-// function f(){
-//     console.log("项目创建完成...");
-//     console.log("请执行",chalk.red("cd react-app && npm install"),"进行项目依赖安装...");
-// }
+function f(){
+    console.log("项目创建完成...");
+    console.log("请执行",chalk.red("cd react-app && npm install"),"进行后续操作...");
+}
 
 
 //console.log(y,"------",process.cwd());
