@@ -23,8 +23,8 @@ program
 .command('init')                                        //声明一个子命令
 .description('create react working directory')          //给出命令的描述
 .option('name', '项目的文件夹名字，如果没有默认为react-app')   //设置命令的参数
-.action(function (options) {                           //命令的实现体
-       if(options){
+.action(function (options) {                    //命令的实现体
+       if(typeof options=="string"){
          filename=options;
          objName=path.join(process.cwd(),"/"+options)
        }else{

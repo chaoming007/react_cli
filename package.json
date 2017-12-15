@@ -1,6 +1,6 @@
 {
-  "name": "my-react-test",
-  "version": "1.0.1",
+  "name": "my-react-cli",
+  "version": "1.0.3",
   "description": "这是一个react模板脚手架",
   "main": "index.js",
   "scripts": {
