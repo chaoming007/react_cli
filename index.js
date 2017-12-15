@@ -17,13 +17,13 @@ let spinner,objName;
 
 
 
-program.version('0.0.1');                                    //声明版本号
+program.version('0.0.1');                                   
 program
 .usage('<command> [options]')
-.command('init')                                        //声明一个子命令
-.description('create react working directory')          //给出命令的描述
-.option('name', '项目的文件夹名字，如果没有默认为react-app')   //设置命令的参数
-.action(function (options) {                    //命令的实现体
+.command('init')                                        
+.description('create react working directory')          
+.option('name', '项目的文件夹名字，如果没有默认为react-app')   
+.action(function (options) {                    
        if(typeof options=="string"){
          filename=options;
          objName=path.join(process.cwd(),"/"+options)
@@ -39,7 +39,7 @@ program
       function setFileFun(obj){   
           let datObj="";
           fs.readJson(tempJson)
-          .then((packageObj) => {    //读取package数据
+          .then((packageObj) => {    
             datObj=setPageJsonFun(packageObj,obj);
             return fs.copy(temp,objName)
           })
@@ -50,7 +50,7 @@ program
              f()
           })
       }
-      function setPageJsonFun(packageObj,obj){          //设置package
+      function setPageJsonFun(packageObj,obj){         
            for(let key in packageObj){
                for(let key_1 in obj){
                   if(key===key_1){
@@ -63,9 +63,10 @@ program
       
 
 });
-program.parse(process.argv);                              //开始解析用户输入的命令
+program.parse(process.argv);                              
 function f(){
     console.log("项目创建完成...");
-    console.log("请执行",chalk.red("cd "+filename+" && npm install"),"进行后续操作...");
+    console.log(" ");
+    console.log("请执行",chalk.red("cd "+filename+" && npm install"),"进行开发吧...");
 }
 
