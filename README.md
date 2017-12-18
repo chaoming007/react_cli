@@ -16,7 +16,7 @@ my-react-cli是一个为了解决工作问题而开发的轻型脚手架工具�
 
 环境: Node.js , npm 3.0+
 
-    npm install -g tg-cli
+    npm install -g my-react-cli
 
 推荐使用国内镜像安装 cnpm
 
