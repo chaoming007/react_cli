@@ -7,6 +7,7 @@ const inquirer = require('inquirer')
 const download = require('download-git-repo')
 const ora = require('ora')
 const fs = require('fs-extra')
+const exec = require('promise-exec')
 
 let checkVersion=require("./lib/check-version");
 let packAge = require(__dirname + '/package.json')
@@ -17,7 +18,6 @@ let nowTemp=path.join(process.cwd(),"/react-app")
 let filename="react-app"
 let spinner,objName;
 
-
 program.on('--help', () => {
   console.log('  Examples:')
   console.log()
@@ -26,7 +26,6 @@ program.on('--help', () => {
   console.log()
 })
 
-
 program.version(packAge.version);                                   
 program
 .usage('<command> [options]')
@@ -34,8 +33,7 @@ program
 .description('创建一个新的react项目模板！')          
 .option('name', '项目的文件夹名字，如果没有默认为react-app')   
 .action(function (options) {      
-  checkVersion(setTempFun,options);              
-      
+  checkVersion(setTempFun,options);                  
 });
 program.parse(process.argv);     
 
@@ -46,11 +44,12 @@ function setTempFun(options){
       }else{
         objName=nowTemp;
       }
-
-    inquirer.prompt(questions).then(answers => {
+    inquirer.prompt(questions(filename)).then(answers => {
       spinner= ora('downloading template');
       spinner.start();
-      setFileFun(answers)
+      setTimeout(function(){
+        setFileFun(answers);
+      },2000)
     })
     function setFileFun(obj){   
         let datObj="";
@@ -62,27 +61,29 @@ function setTempFun(options){
         .then(()=>{
           return fs.writeJson(path.join(objName,"package.json"),datObj);  
         }).then(()=>{
-            spinner.stop()
-            f()
+          spinner.stop()
+          f()
         })
     }
     function setPageJsonFun(packageObj,obj){         
-          for(let key in packageObj){
-              for(let key_1 in obj){
-                if(key===key_1){
-                    packageObj[key]=obj[key_1];
-                }
+        for(let key in packageObj){
+            for(let key_1 in obj){
+              if(key===key_1){
+                  packageObj[key]=obj[key_1];
               }
-          }
-          return packageObj;
+            }
+        }
+        return packageObj;
     }
-
 }
-
 function f(){
     console.log(" ");
-    console.log("    项目创建完成...");
+    console.log(" 项目创建完成...");
     console.log(" ");
-    console.log("    请执行",chalk.red("cd "+filename+" && npm install"),"进行开发吧...");
+    console.log(" 请执行",chalk.red("cd "+filename+" && npm install"),"进行开发吧...");
+    console.log(" ");
+    console.log(" 运行项目请执行" + chalk.green("npm run dev"));
+    console.log(" 打包项目请运行" + chalk.green("npm run build"));
+    console.log(" ");
 }
 
