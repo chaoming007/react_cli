@@ -15,6 +15,7 @@ let questions=require("./lib/questions")
 let tempJson=path.join(__dirname,"/template/package.json")
 let temp=path.join(__dirname,"/template")
 let nowTemp=path.join(process.cwd(),"/react-app")
+let font=require("./lib/font-set")
 let filename="react-app"
 let spinner,objName;
 
@@ -32,7 +33,8 @@ program
 .command('init')                                        
 .description('创建一个新的react项目模板！')          
 .option('name', '项目的文件夹名字，如果没有默认为react-app')   
-.action(function (options) {      
+.action(function (options) {    
+  font();  
   checkVersion(setTempFun,options);                  
 });
 program.parse(process.argv);     
