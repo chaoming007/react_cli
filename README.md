@@ -21,9 +21,16 @@ my-react-cli是一个为了解决工作问题而开发的轻型脚手架工具�
 
 安装完成以后，可以在命令行下使用 react init 命令来创建项目，该命令的用法：
 
-    react init my-react
+    react init <my-object>
     
 如果不输入项目名称，那系统将采用默认的项目名称react-app进行创建
+
+可以通过：
+
+react init -V  查看已安装版本
+
+react init -h  查看使用帮助
+
 
 ### 创建完之后执行： ###
 
