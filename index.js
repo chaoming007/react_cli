@@ -23,7 +23,7 @@ program.on('--help', () => {
   console.log('  Examples:')
   console.log()
   console.log(chalk.gray('    # 创建一个新的react项目模板！（如果没有输入项目名称，默认名称为react-app）'))
-  console.log('    $ react init my-project')
+  console.log('    $ react init <my-project>')
   console.log()
 })
 
@@ -33,12 +33,11 @@ program
 .command('init')                                        
 .description('创建一个新的react项目模板！')          
 .option('name', '项目的文件夹名字，如果没有默认为react-app')   
-.action(function (options) {    
-  font();  
+.action(function (options) {  
+  font();    
   checkVersion(setTempFun,options);                  
 });
 program.parse(process.argv);     
-
 function setTempFun(options){
       if(typeof options=="string"){
         filename=options;

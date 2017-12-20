@@ -72,16 +72,7 @@ module.exports={
             template: process.cwd()+'/src/index.html'       
         }),
         new ExtractTextPlugin("css/[name].css"),
-        new CleanWebpackPlugin(path.join(__dirname,"dist/")),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: {
-              warnings: false
-            }
-        }),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true
-        })
+        new CleanWebpackPlugin(path.join(__dirname,"dist/"))
     ]
 
 }

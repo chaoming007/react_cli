@@ -47,7 +47,7 @@ module.exports={
         noInfo: true,
         overlay: true
     },
-    devtool: '#eval-source-map',
+    devtool: false,
 
     resolve: { 
         extensions: ['*', '.js', '.jsx', '.json']
@@ -60,13 +60,17 @@ module.exports={
         new ExtractTextPlugin("css/[name].css"),
         new CleanWebpackPlugin(path.join(process.cwd(),"/dist/")),
         new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
             compress: {
               warnings: false
             }
         }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "commons",
+            filename: "js/"+"[name]-[hash:6].js",
+            minChunks:3
         })
     ]
 
