@@ -6,7 +6,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports={
     entry:{
-        app:path.join(process.cwd(),"src/index.js")
+        app:path.join(process.cwd(),"src/index.js"),
+        vendor: ['react', 'react-dom']
     },
     output:{
         path:path.join(process.cwd(),"dist/"),
@@ -69,8 +70,7 @@ module.exports={
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: "commons",
-            filename: "js/"+"[name]-[hash:6].js",
-            minChunks:3
+            filename: "js/"+"[name].js"
         })
     ]
 
